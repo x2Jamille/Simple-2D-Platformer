@@ -18,14 +18,13 @@ public class PlayerMovement : MonoBehaviour
     private bool _isRunning;
     private bool _isLookingToLeft;
 
+    public bool IsRunning() => _isRunning;
+    public bool IsGrounded() => _isGrounded;
     private void Start()
     {
         _rb2d = GetComponent<Rigidbody2D>();
         _jumpTimeCounter = _jumpTime;
     }
-
-    public bool IsRunning() => _isRunning;
-    public bool IsGrounded() => _isGrounded;
 
     private void FixedUpdate()
     {

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(PlayerMovement), typeof(PlayerAnimation))]
 public class Player : MonoBehaviour
@@ -9,6 +10,7 @@ public class Player : MonoBehaviour
     private Rigidbody2D _rb2d;
     private PlayerState _currentState;
     private int _coinsPickedUp;
+
 
     public PlayerState GetState() => _currentState;
     public int CoinsPickedUp() => _coinsPickedUp;
@@ -27,6 +29,8 @@ public class Player : MonoBehaviour
                 _currentState = _playerMovement.IsRunning() ? PlayerState.RUNNING : PlayerState.WALKING;
             else
                 _currentState = PlayerState.IDLING;
+        else
+            _currentState = PlayerState.IDLING;
     }
 
     private void Respawn()
@@ -34,6 +38,7 @@ public class Player : MonoBehaviour
         _currentState = PlayerState.IDLING;
         _rb2d.velocity = Vector2.zero;
         transform.position = _startPoint.position;
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
